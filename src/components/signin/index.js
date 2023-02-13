@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { CircularProgress } from "@material-ui/core";
-import { redirect } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { firebaseApp } from "../../firebase";
-
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const navigate = useNavigate(firebaseApp);
 
     const [loading,setLoading] = useState(false)
 
@@ -31,11 +31,11 @@ const SignIn = () => {
   });
 
   const submitForm = (values) =>{
-    
+     
     signInWithEmailAndPassword(auth,values.email,values.password).then(()=>{
       console.log("mostafa")
-        redirect("/dashboard")
-        setLoading(false)
+      navigate("/dashboard");
+        setLoading(false)    
     }).catch((error)=>{
       setLoading(false)
       alert(error)

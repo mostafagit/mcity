@@ -4,7 +4,7 @@ import Header from "./components/Header_Footer/header";
 import Home from "./components/HOME";
 import SignIn from "./components/signin";
 
-function App() {
+function App(props) {
   return (
     <>
       <Header />
